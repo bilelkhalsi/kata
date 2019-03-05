@@ -29,6 +29,6 @@ public enum Score {
             case FORTY:
                 return WIN;
         }
-        return ZERO;
+        return WIN;
     }
 }

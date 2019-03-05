@@ -10,13 +10,19 @@ public class Player {
     private Score score;
 
     public Player(String name) {
-        this.name = name;
-        score = Score.ZERO;
+        this(name, Score.ZERO);
     }
 
-    public void mark() {
-        this.score = score.next();
+    private Player(String name,Score score) {
+        this.name = name;
+        this.score = score;
     }
+
+    public Player withNextScore() {
+        this.score = score.next();
+        return this;
+    }
+
 
     public Score getScore() {
         return score;
