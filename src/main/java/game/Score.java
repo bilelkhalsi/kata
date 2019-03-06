@@ -6,15 +6,15 @@ package game;
  */
 public enum Score {
 
-    ZERO("0"), FIFTEEN("15"), THIRTY("30"), FORTY("40"), WIN("win");
+    ZERO(0), FIFTEEN(1), THIRTY(2), FORTY(3), ADV(4), WIN(5);
 
-    private String value;
+    private int value;
 
-    Score(String value) {
+    Score(int value) {
         this.value = value;
     }
 
-    public String getValue() {
+    public int getValue() {
         return value;
     }
 
@@ -27,6 +27,8 @@ public enum Score {
             case THIRTY:
                 return FORTY;
             case FORTY:
+                return ADV;
+            case ADV:
                 return WIN;
         }
         return WIN;

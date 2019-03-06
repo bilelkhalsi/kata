@@ -13,7 +13,7 @@ public class Player {
         this(name, Score.ZERO);
     }
 
-    private Player(String name,Score score) {
+    private Player(String name, Score score) {
         this.name = name;
         this.score = score;
     }
@@ -23,6 +23,10 @@ public class Player {
         return this;
     }
 
+    public Player withScore(Score score) {
+        this.score = score;
+        return this;
+    }
 
     public Score getScore() {
         return score;
@@ -30,6 +34,6 @@ public class Player {
 
     @Override
     public String toString() {
-        return String.join(",", "Player : " + name, " Score : " + score.getValue());
+        return String.join(",", "Player : " + name, " Score : " + score);
     }
 }
