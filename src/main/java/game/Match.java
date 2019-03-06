@@ -1,9 +1,6 @@
 package game;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -15,7 +12,7 @@ import java.util.stream.Stream;
 public class Match {
 
     private Map<Player, Integer> scores= new HashMap<>();
-    private Predicate<Player> shouldWin = p -> scores.get(p) >= 6;
+    private Predicate<Player> shouldWin = p -> scores.values().containsAll(Arrays.asList(6, 4));
     private Stream<Game> gameStream;
 
     public Match(Player pl01, Player pl02) {
