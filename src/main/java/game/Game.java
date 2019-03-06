@@ -3,7 +3,6 @@ package game;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import static game.Score.*;
 
@@ -19,7 +18,7 @@ public class Game {
 
     private Predicate<Player> endGamePredicate = p -> WIN == p.getScore();
     private Predicate<Player> deuce = p -> pl01.getScore() == pl02.getScore() && p.getScore() == FORTY;
-    private Predicate<Player> shouldResetAdv = p -> (pl01.getScore() == ADV || pl02.getScore() == ADV ) && p.getScore() == FORTY;
+    private Predicate<Player> shouldResetAdv = p -> (pl01.getScore() == ADV || pl02.getScore() == ADV) && p.getScore() == FORTY;
     private Predicate<Player> shouldWin = p -> Math.abs(pl01.getScore().getValue() - pl02.getScore().getValue()) >= 1 && p.getScore().getValue() >= FORTY.getValue();
 
     public Game(Player pl01, Player pl02) {
@@ -29,6 +28,7 @@ public class Game {
 
     /**
      * Start game.
+     *
      * @param pointStream stream of points
      * @return optional of winner
      */
@@ -42,6 +42,7 @@ public class Game {
 
     /**
      * Apply update score rules.
+     *
      * @param pl player who won a point
      * @return player with updated score.
      */
@@ -61,5 +62,23 @@ public class Game {
         return pl.withNextScore();
     }
 
+    /**
+     * Return winner
+     *
+     * @return winner if present
+     */
+    public Optional<Player> winner() {
+        if (pl01.getScore() == WIN) {
+            return Optional.of(pl01);
+        }
+        if (pl02.getScore() == WIN) {
+            return Optional.of(pl02);
+        }
+        return Optional.empty();
+    }
 
+    @Override
+    public String toString() {
+        return String.join("Winner : ", winner().get().toString());
+    }
 }
